@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\EloquentORM;
 
 use App\DTO\Owner\CreateOwnerDTO;
 use App\DTO\Owner\UpdateOwnerDTO;
 use App\Models\Owner;
-use App\Repositories\OwnerRepositoryInterface;
+use App\Repositories\Interfaces\OwnerRepositoryInterface;
 use stdClass;
 
 class OwnerEloquentORM implements OwnerRepositoryInterface

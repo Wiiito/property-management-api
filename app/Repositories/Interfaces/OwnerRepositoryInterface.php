@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Interfaces;
 
 use stdClass;
 use App\DTO\Owner\CreateOwnerDTO;
