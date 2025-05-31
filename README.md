@@ -3,11 +3,11 @@
 Clone Repositório
 
 ```sh
-git clone -b laravel-10-com-php-8.1 https://github.com/especializati/setup-docker-laravel.git app-laravel
+git clone https://github.com/wiiito/property-management-api.git property-management-api
 ```
 
 ```sh
-cd app-laravel
+cd property-management-api
 ```
 
 Crie o Arquivo .env
