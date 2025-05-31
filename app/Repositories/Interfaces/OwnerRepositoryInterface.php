@@ -4,7 +4,9 @@ namespace App\Repositories\Interfaces;
 
 use stdClass;
 use App\DTO\Owner\CreateOwnerDTO;
+use App\DTO\Owner\LoginOwnerDTO;
 use App\DTO\Owner\UpdateOwnerDTO;
+use App\Models\Owner;
 
 interface OwnerRepositoryInterface
 {
@@ -15,4 +17,6 @@ interface OwnerRepositoryInterface
     public function update(UpdateOwnerDTO $ownerData): stdClass | null;
 
     public function delete(string $id): void;
+
+    public function validate(LoginOwnerDTO $ownerData): Owner | null;
 }

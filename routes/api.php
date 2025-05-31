@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OwnerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::apiResource("/owner", OwnerController::class);
+Route::post("/owner/generateToken", [OwnerController::class, "generateToken"]);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

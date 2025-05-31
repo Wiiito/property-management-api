@@ -3,9 +3,11 @@
 namespace App\Repositories\EloquentORM;
 
 use App\DTO\Owner\CreateOwnerDTO;
+use App\DTO\Owner\LoginOwnerDTO;
 use App\DTO\Owner\UpdateOwnerDTO;
 use App\Models\Owner;
 use App\Repositories\Interfaces\OwnerRepositoryInterface;
+use Illuminate\Support\Facades\Hash;
 use stdClass;
 
 class OwnerEloquentORM implements OwnerRepositoryInterface
@@ -52,5 +54,20 @@ class OwnerEloquentORM implements OwnerRepositoryInterface
     public function delete(string $id): void
     {
         $this->model->findOrFail($id)->delete();
+    }
+
+    public function validate(LoginOwnerDTO $ownerData): Owner | null
+    {
+        $owner = $this->model->where('email', $ownerData->email)->first();
+
+        if (!$owner) {
+            return null;
+        }
+
+        if (!Hash::check($ownerData->password, $owner->password)) {
+            return null;
+        }
+
+        return $owner;
     }
 }

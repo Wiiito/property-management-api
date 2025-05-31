@@ -3,8 +3,10 @@
 namespace App\Services;
 
 use App\DTO\Owner\CreateOwnerDTO;
+use App\DTO\Owner\LoginOwnerDTO;
 use App\DTO\Owner\UpdateOwnerDTO;
-use App\Repositories\OwnerRepositoryInterface;
+use App\Models\Owner;
+use App\Repositories\Interfaces\OwnerRepositoryInterface;
 use stdClass;
 
 class OwnerService
@@ -39,5 +41,10 @@ class OwnerService
     public function delete(string $id)
     {
         $this->repository->delete($id);
+    }
+
+    public function validate(LoginOwnerDTO $ownerData): Owner | null
+    {
+        return $this->repository->validate($ownerData);
     }
 }
