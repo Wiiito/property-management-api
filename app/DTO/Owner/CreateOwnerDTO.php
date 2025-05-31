@@ -1,8 +1,8 @@
 <?php
 
-namespace App\DTO;
+namespace App\DTO\Owner;
 
-use App\Http\Requests\StoreOwnerRequest;
+use App\Http\Requests\Owner\StoreOwnerRequest;
 
 class CreateOwnerDTO
 {

@@ -2,9 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\Owner;
-use App\DTO\CreateOwnerDTO;
-use App\DTO\UpdateOwnerDTO;
+use App\DTO\Owner\CreateOwnerDTO;
+use App\DTO\Owner\UpdateOwnerDTO;
 use App\Repositories\OwnerRepositoryInterface;
 use stdClass;
 

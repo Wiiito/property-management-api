@@ -1,8 +1,8 @@
 <?php
 
-namespace App\DTO;
+namespace App\DTO\Owner;
 
-use App\Http\Requests\UpdateOwnerRequest;
+use App\Http\Requests\Owner\UpdateOwnerRequest;
 
 class UpdateOwnerDTO
 {

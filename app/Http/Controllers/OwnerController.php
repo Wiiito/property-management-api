@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\DTO\CreateOwnerDTO;
-use App\DTO\UpdateOwnerDTO;
-use App\Http\Requests\StoreOwnerRequest;
-use App\Http\Requests\UpdateOwnerRequest;
+use App\DTO\Owner\CreateOwnerDTO;
+use App\DTO\Owner\UpdateOwnerDTO;
+use App\Http\Requests\Owner\StoreOwnerRequest;
+use App\Http\Requests\Owner\UpdateOwnerRequest;
 use App\Services\OwnerService;
 use Illuminate\Http\Response;
 

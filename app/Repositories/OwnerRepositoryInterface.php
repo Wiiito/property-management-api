@@ -3,8 +3,8 @@
 namespace App\Repositories;
 
 use stdClass;
-use App\DTO\CreateOwnerDTO;
-use App\DTO\UpdateOwnerDTO;
+use App\DTO\Owner\CreateOwnerDTO;
+use App\DTO\Owner\UpdateOwnerDTO;
 
 interface OwnerRepositoryInterface
 {
