@@ -13,7 +13,7 @@ return new class extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->integer('value');
-            $table->enum('type', PropertyType::cases());
+            $table->enum('type', array_column(PropertyType::cases(), 'value'));
             $table->boolean('furnished')->default(false);
             $table->integer('floor')->nullable();
             $table->foreignId('owner_id')->constrained(table: 'owners', indexName: 'id');
