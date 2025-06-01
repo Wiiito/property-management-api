@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Repositories\EloquentORM\PropertyEloquentORM;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\Interfaces\OwnerRepositoryInterface;
 use App\Repositories\EloquentORM\OwnerEloquentORM;
+use App\Repositories\Interfaces\PropertyRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,5 +24,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->app->bind(OwnerRepositoryInterface::class, OwnerEloquentORM::class);
+        $this->app->bind(PropertyRepositoryInterface::class, PropertyEloquentORM::class);
     }
 }

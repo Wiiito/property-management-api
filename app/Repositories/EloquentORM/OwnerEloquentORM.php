@@ -40,14 +40,10 @@ class OwnerEloquentORM implements OwnerRepositoryInterface
             return null;
         }
 
-        $newData = (array) $ownerData;
-
         // Para caso a senha não tenha sido alterada, remove a senha para que ela não seja apagada
-        if (!$newData['password']) {
-            unset($newData['password']);
-        }
+        $ownerData = array_filter((array) $ownerData);
 
-        $owner->update($newData);
+        $owner->update($ownerData);
         return (object) $owner->toArray();
     }
 

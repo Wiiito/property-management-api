@@ -1,0 +1,30 @@
+<?php
+
+namespace App\DTO\Property;
+
+use App\Enums\PropertyType;
+use App\Http\Requests\Property\CreatePropertyRequest;
+
+class CreatePropertyDTO
+{
+    public function __construct(
+        public string $title,
+        public int $value,
+        public PropertyType $type,
+        public bool $furnished,
+        public int | null $floor,
+        public string $owner_id,
+    ) {}
+
+    public static function fromRequest(CreatePropertyRequest $request): self
+    {
+        return new self(
+            $request->title,
+            $request->value,
+            PropertyType::from($request->type),
+            $request->furnished,
+            $request->floor,
+            $request->user()->id
+        );
+    }
+}
