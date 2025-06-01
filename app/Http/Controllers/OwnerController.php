@@ -31,7 +31,7 @@ class OwnerController extends Controller
         $owner = $this->service->get($id);
 
         if (!$owner) {
-            return response()->json(["message" => "Owner not found"], Response::HTTP_BAD_GATEWAY);
+            return response()->json(["message" => "Owner not found"], Response::HTTP_BAD_REQUEST);
         }
 
         return $owner;
@@ -43,7 +43,7 @@ class OwnerController extends Controller
         $owner = $this->service->update(UpdateOwnerDTO::fromRequest($request, $id));
 
         if (!$owner) {
-            return response()->json(["message" => "Owner not found"], Response::HTTP_BAD_GATEWAY);
+            return response()->json(["message" => "Owner not found"], Response::HTTP_BAD_REQUEST);
         }
 
         return $owner;
