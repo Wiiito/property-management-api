@@ -18,9 +18,6 @@ class OwnerController extends Controller
         protected OwnerService $ownerServices,
     ) {}
 
-    public function index() {}
-
-
     public function store(StoreOwnerRequest $request)
     {
         $owner = $this->ownerServices->create(CreateOwnerDTO::fromRequest($request));
@@ -34,7 +31,7 @@ class OwnerController extends Controller
         $owner = $this->ownerServices->get($id);
 
         if (!$owner) {
-            return response()->json(["message" => "Owner not found"], Response::HTTP_NOT_FOUND);
+            return response()->json(["message" => "Owner not found"], Response::HTTP_BAD_GATEWAY);
         }
 
         return $owner;
@@ -46,7 +43,7 @@ class OwnerController extends Controller
         $owner = $this->ownerServices->update(UpdateOwnerDTO::fromRequest($request, $id));
 
         if (!$owner) {
-            return response()->json(["message" => "Owner not found"], Response::HTTP_NOT_FOUND);
+            return response()->json(["message" => "Owner not found"], Response::HTTP_BAD_GATEWAY);
         }
 
         return $owner;
