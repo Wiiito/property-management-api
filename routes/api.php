@@ -22,35 +22,35 @@ use Illuminate\Support\Facades\Route;
 
 // ---- Owner ----
 
-Route::get("/owner", [OwnerController::class, "index"]);
-Route::get("/owner/{owner}", [OwnerController::class, "show"]);
+Route::get("/owner", [OwnerController::class, "index"])->name("owner.all");
+Route::get("/owner/{owner}", [OwnerController::class, "show"])->name("owner.get");
 
-Route::post("/owner", [OwnerController::class, "store"]);
-Route::post("/owner/generateToken", [OwnerController::class, "generateToken"]);
+Route::post("/owner", [OwnerController::class, "store"])->name("owner.create");
+Route::post("/owner/generateToken", [OwnerController::class, "generateToken"])->name("owner.token");
 
 // Rotas com middleware de autenticação -- Owner e ID na url -- 
 
 // Deve-se ser ou admin ou o dono da conta para deletar ou atualizar
 Route::middleware(['auth:sanctum', OwnerMiddleware::class])->group(function () {
     // -- Owner --
-    Route::put("/owner/{owner}", [OwnerController::class, "update"]);
-    Route::delete("/owner/{owner}", [OwnerController::class, "destroy"]);
+    Route::put("/owner/{owner}", [OwnerController::class, "update"])->name("owner.update");
+    Route::delete("/owner/{owner}", [OwnerController::class, "destroy"])->name("owner.delete");
 });
 
 
 // ---- Property ----
 
-Route::get("/property", [PropertyController::class, "index"]);
-Route::get("/property/{property}", [PropertyController::class, "show"]);
+Route::get("/property", [PropertyController::class, "index"])->name("property.all");
+Route::get("/property/{property}", [PropertyController::class, "show"])->name("owner.get");
 
 // Rotas com middleware de autenticação -- Owner -- 
 // Adicionando "user" ao request, deve estar logado para criar uma propriedade
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::post("/property", [PropertyController::class, "store"]);
+    Route::post("/property", [PropertyController::class, "store"])->name("property.create");
 });
 
 // Deve estar logado e ser dono do imovel para remover ou atualizar
 Route::middleware(['auth:sanctum', PropertyMiddleware::class])->group(function () {
-    Route::put("/property/{property}", [PropertyController::class, "update"]);
-    Route::delete("/property/{property}", [PropertyController::class, "destroy"]);
+    Route::put("/property/{property}", [PropertyController::class, "update"])->name("property.update");
+    Route::delete("/property/{property}", [PropertyController::class, "destroy"])->name("property.delete");
 });
