@@ -18,6 +18,11 @@ class OwnerController extends Controller
         protected OwnerService $service,
     ) {}
 
+    public function index()
+    {
+        return $this->service->all();
+    }
+
     public function store(StoreOwnerRequest $request)
     {
         $owner = $this->service->create(CreateOwnerDTO::fromRequest($request));

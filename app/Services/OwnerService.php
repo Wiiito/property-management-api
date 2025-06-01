@@ -23,6 +23,11 @@ class OwnerService
         protected PropertyRepositoryInterface $propertyRepository,
     ) {}
 
+    public function all()
+    {
+        return $this->ownerRepository->all();
+    }
+
     public function get(string $id): stdClass | null
     {
         $user = $this->ownerRepository->findOne($id);

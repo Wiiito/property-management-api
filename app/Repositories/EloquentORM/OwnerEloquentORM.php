@@ -15,6 +15,11 @@ class OwnerEloquentORM implements OwnerRepositoryInterface
     public function __construct(
         protected Owner $model,
     ) {}
+
+    public function all(): array
+    {
+        return $this->model->all()->toArray();
+    }
     public function findOne(string $id): stdClass | null
     {
         $owner = $this->model->find($id);

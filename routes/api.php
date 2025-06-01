@@ -22,8 +22,10 @@ use Illuminate\Support\Facades\Route;
 
 // ---- Owner ----
 
-Route::post("/owner", [OwnerController::class, "store"]);
+Route::get("/owner", [OwnerController::class, "index"]);
 Route::get("/owner/{owner}", [OwnerController::class, "show"]);
+
+Route::post("/owner", [OwnerController::class, "store"]);
 Route::post("/owner/generateToken", [OwnerController::class, "generateToken"]);
 
 // Rotas com middleware de autenticação -- Owner e ID na url -- 
