@@ -10,5 +10,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(OwnerSeeder::class);
+        $this->call(PropertySeeder::class);
     }
 }
