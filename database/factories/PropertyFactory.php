@@ -19,6 +19,7 @@ class PropertyFactory extends Factory
     public function definition(): array
     {
         $owners_id = Owner::pluck("id");
+
         return [
             "title" => $this->faker->sentence,
             "value" => $this->faker->numberBetween(100000, 10000000),
