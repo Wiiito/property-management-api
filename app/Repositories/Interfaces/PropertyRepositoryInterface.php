@@ -10,7 +10,7 @@ use stdClass;
 
 interface PropertyRepositoryInterface
 {
-    public function all(FilterPropertyDTO $filter): array;
+    public function all(?FilterPropertyDTO $filter = null): array;
     public function findOne(string $id): stdClass | null;
 
     public function getAllFromOwner(string $id): Collection;

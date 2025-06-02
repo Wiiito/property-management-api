@@ -21,7 +21,7 @@ class PropertyService
         protected PropertyRepositoryInterface $repository,
     ) {}
 
-    public function all(FilterPropertyDTO $filter): array
+    public function all(?FilterPropertyDTO $filter = null): array
     {
         return $this->repository->all($filter);
     }

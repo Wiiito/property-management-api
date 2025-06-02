@@ -17,8 +17,12 @@ class PropertyEloquentORM implements PropertyRepositoryInterface
         protected Property $model,
     ) {}
 
-    public function all(FilterPropertyDTO $filter): array
+    public function all(?FilterPropertyDTO $filter = null): array
     {
+        if (is_null($filter)) {
+            return $this->model->paginate(20)->all();
+        }
+
         $filteredProperties = DB::table("properties");
 
         $filter->type ? $filteredProperties->where("type", $filter->type) : "";
