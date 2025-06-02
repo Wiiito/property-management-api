@@ -3,13 +3,14 @@
 namespace App\Repositories\Interfaces;
 
 use App\DTO\Property\CreatePropertyDTO;
+use App\DTO\Property\FilterPropertyDTO;
 use App\DTO\Property\UpdatePropertyDTO;
 use Illuminate\Database\Eloquent\Collection;
 use stdClass;
 
 interface PropertyRepositoryInterface
 {
-    public function all(): array;
+    public function all(FilterPropertyDTO $filter): array;
     public function findOne(string $id): stdClass | null;
 
     public function getAllFromOwner(string $id): Collection;

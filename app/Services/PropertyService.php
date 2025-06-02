@@ -4,8 +4,10 @@ namespace App\Services;
 
 
 use App\DTO\Property\CreatePropertyDTO;
+use App\DTO\Property\FilterPropertyDTO;
 use App\DTO\Property\UpdatePropertyDTO;
 use App\Repositories\Interfaces\PropertyRepositoryInterface;
+use Illuminate\Database\Eloquent\Collection;
 use stdClass;
 
 class PropertyService
@@ -19,9 +21,9 @@ class PropertyService
         protected PropertyRepositoryInterface $repository,
     ) {}
 
-    public function all(): array
+    public function all(FilterPropertyDTO $filter): array
     {
-        return $this->repository->all();
+        return $this->repository->all($filter);
     }
 
     public function get(string $id): stdClass | null

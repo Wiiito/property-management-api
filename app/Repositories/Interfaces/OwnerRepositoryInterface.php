@@ -7,6 +7,7 @@ use App\DTO\Owner\CreateOwnerDTO;
 use App\DTO\Owner\LoginOwnerDTO;
 use App\DTO\Owner\UpdateOwnerDTO;
 use App\Models\Owner;
+use Illuminate\Database\Eloquent\Collection;
 
 interface OwnerRepositoryInterface
 {

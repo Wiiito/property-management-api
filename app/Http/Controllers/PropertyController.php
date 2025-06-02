@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\DTO\Property\CreatePropertyDTO;
+use App\DTO\Property\FilterPropertyDTO;
 use App\DTO\Property\UpdatePropertyDTO;
 use App\Http\Requests\Property\CreatePropertyRequest;
+use App\Http\Requests\Property\FilterPropertyRequest;
 use App\Http\Requests\Property\UpdatePropertyRequest;
-use App\Models\Property;
 use App\Services\PropertyService;
 use Illuminate\Http\Response;
 
@@ -16,9 +17,9 @@ class PropertyController extends Controller
         protected PropertyService $service,
     ) {}
 
-    public function index()
+    public function index(FilterPropertyRequest $request)
     {
-        return $this->service->all();
+        return $this->service->all(FilterPropertyDTO::fromRequest($request));
     }
 
     public function store(CreatePropertyRequest $request)

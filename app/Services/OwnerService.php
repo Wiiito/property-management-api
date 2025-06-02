@@ -9,6 +9,7 @@ use App\Models\Owner;
 use App\Models\Property;
 use App\Repositories\Interfaces\OwnerRepositoryInterface;
 use App\Repositories\Interfaces\PropertyRepositoryInterface;
+use Illuminate\Database\Eloquent\Collection;
 use stdClass;
 
 class OwnerService
@@ -23,7 +24,7 @@ class OwnerService
         protected PropertyRepositoryInterface $propertyRepository,
     ) {}
 
-    public function all()
+    public function all(): array
     {
         return $this->ownerRepository->all();
     }

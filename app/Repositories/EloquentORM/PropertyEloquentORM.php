@@ -3,10 +3,12 @@
 namespace App\Repositories\EloquentORM;
 
 use App\DTO\Property\CreatePropertyDTO;
+use App\DTO\Property\FilterPropertyDTO;
 use App\DTO\Property\UpdatePropertyDTO;
 use App\Models\Property;
 use App\Repositories\Interfaces\PropertyRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 use stdClass;
 
 class PropertyEloquentORM implements PropertyRepositoryInterface
@@ -15,10 +17,20 @@ class PropertyEloquentORM implements PropertyRepositoryInterface
         protected Property $model,
     ) {}
 
-    public function all(): array
+    public function all(FilterPropertyDTO $filter): array
     {
-        $allProperties = $this->model->all();
-        return $allProperties->toArray();
+        $filteredProperties = DB::table("properties");
+
+        $filter->type ? $filteredProperties->where("type", $filter->type) : "";
+        $filter->minValue ? $filteredProperties->where("value", ">", $filter->minValue) : "";
+        $filter->maxValue ? $filteredProperties->where("value", "<", $filter->maxValue) : "";
+        $filter->minFloor ? $filteredProperties->where("floor", ">", $filter->minFloor) : "";
+        $filter->maxValue ? $filteredProperties->where("floor", "<", $filter->maxValue) : "";
+        !is_null($filter->furnished) ? $filteredProperties->where("furnished", $filter->furnished) : "";
+
+        $filteredProperties->paginate(20);
+
+        return $filteredProperties->get()->all();
     }
 
     public function findOne(string $id): stdClass | null

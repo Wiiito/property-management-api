@@ -7,6 +7,7 @@ use App\DTO\Owner\LoginOwnerDTO;
 use App\DTO\Owner\UpdateOwnerDTO;
 use App\Models\Owner;
 use App\Repositories\Interfaces\OwnerRepositoryInterface;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Hash;
 use stdClass;
 
@@ -18,7 +19,8 @@ class OwnerEloquentORM implements OwnerRepositoryInterface
 
     public function all(): array
     {
-        return $this->model->all()->toArray();
+        $allOwners = $this->model->paginate(20)->all();
+        return $allOwners;
     }
     public function findOne(string $id): stdClass | null
     {
