@@ -1,4 +1,8 @@
-### Passo a passo
+### Documentação
+
+-   [Documentação](https://documenter.getpostman.com/view/45490625/2sB2qgfzCM)
+
+### Passo a passo para execução
 
 Clone Repositório
 
@@ -36,6 +40,14 @@ SESSION_DRIVER=redis
 REDIS_HOST=redis
 REDIS_PASSWORD=null
 REDIS_PORT=6379
+
+# Para envio de emails simples:
+MAIL_MAILER=smtp
+MAIL_HOST="endereço host para server SMTP"
+MAIL_PORT="porta do server SMTP"
+# Usuario de email
+MAIL_USERNAME="usuario"
+MAIL_PASSWORD="senha"
 ```
 
 Suba os containers do projeto
@@ -60,6 +72,24 @@ Gere a key do projeto Laravel
 
 ```sh
 php artisan key:generate
+```
+
+Gere as tabelas do banco de dados
+
+```sh
+php artisan migrate
+```
+
+Gere os valores aleatorios para o banco de dados
+
+```sh
+php artisan db:seed
+```
+
+Para testar, rode:
+
+```sh
+php artisan test
 ```
 
 Acesse o projeto
