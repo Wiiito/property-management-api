@@ -41,6 +41,12 @@ class PropertyStatisticsEloquentORM implements PropertyStatisticsRepositoryInter
 
     public function delete(string $id): void
     {
-        PropertyStatistics::findOrFail($id)->delete();
+        $propertyStatistics = PropertyStatistics::where("property_id", $id)->first();
+
+        if (!$propertyStatistics) {
+            return;
+        }
+
+        $propertyStatistics->delete();
     }
 }

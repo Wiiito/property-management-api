@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('property_statistics', function (Blueprint $table) {
+            $table->id();
             $table->integer("impressions")->default(0);
             $table->integer("clicks")->default(0);
             $table->foreignId("property_id")->constrained(table: "properties")->unique();
