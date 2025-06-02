@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
  */
 class OwnerFactory extends Factory
 {
+    protected string $defaultPassword = "password";
     public function definition(): array
     {
         return [
@@ -19,5 +20,13 @@ class OwnerFactory extends Factory
             'created_at' => now(),
             'updated_at' => now(),
         ];
+    }
+    public function defaultPassword(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'password' => Hash::make("password"),
+            ];
+        });
     }
 }
