@@ -36,7 +36,7 @@ class OwnerController extends Controller
         $owner = $this->service->get($id);
 
         if (!$owner) {
-            return response()->json(["message" => "Owner not found"], Response::HTTP_BAD_REQUEST);
+            return response()->json(["errors" => ["id" => "Owner not found"]], Response::HTTP_BAD_REQUEST);
         }
 
         return $owner;
@@ -48,7 +48,7 @@ class OwnerController extends Controller
         $owner = $this->service->update(UpdateOwnerDTO::fromRequest($request, $id));
 
         if (!$owner) {
-            return response()->json(["message" => "Owner not found"], Response::HTTP_BAD_REQUEST);
+            return response()->json(["errors" => ["id" => "Owner not found"]], Response::HTTP_BAD_REQUEST);
         }
 
         return $owner;
@@ -67,7 +67,7 @@ class OwnerController extends Controller
         $owner = $this->service->validate($loginData);
 
         if (!$owner) {
-            return response()->json(["message" => "Wrong credentials"], Response::HTTP_UNAUTHORIZED);
+            return response()->json(["errors" => ["email" => "Wrong credentials", "password" => "Wrong credentials"]], Response::HTTP_UNAUTHORIZED);
         }
 
         $token = $owner->createToken($request->deviceName)->plainTextToken;

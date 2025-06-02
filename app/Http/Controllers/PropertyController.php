@@ -31,7 +31,7 @@ class PropertyController extends Controller
         $property = $this->service->get($id);
 
         if (!$property) {
-            return response()->json(["message" => "Property not found"], Response::HTTP_BAD_REQUEST);
+            return response()->json(["errors" => ["id" => "Property not found"]], Response::HTTP_BAD_REQUEST);
         }
 
         return $property;
@@ -42,7 +42,7 @@ class PropertyController extends Controller
         $property = $this->service->update(UpdatePropertyDTO::fromRequest($request, $id));
 
         if (!$property) {
-            return response()->json(["message" => "Property not found"], Response::HTTP_BAD_REQUEST);
+            return response()->json(["errors" => ["id" => "Property not found"]], Response::HTTP_BAD_REQUEST);
         }
 
         return $property;

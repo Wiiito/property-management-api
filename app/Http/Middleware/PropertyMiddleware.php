@@ -19,11 +19,11 @@ class PropertyMiddleware
         $property = Property::find($request->property);
 
         if (!$property) {
-            return response()->json(['message' => 'Property not found'], Response::HTTP_BAD_REQUEST);
+            return response()->json(["errors" => ["id" => "Property not found"]], Response::HTTP_BAD_REQUEST);
         }
 
         if ($request->user()->id != $property->owner_id) {
-            return response()->json(['message' => 'Not authorized'], Response::HTTP_FORBIDDEN);
+            return response()->json(["errors" => "Not authorized"], Response::HTTP_FORBIDDEN);
         }
 
         return $next($request);
