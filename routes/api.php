@@ -41,7 +41,7 @@ Route::middleware(['auth:sanctum', OwnerMiddleware::class])->group(function () {
 // ---- Property ----
 
 Route::get("/property", [PropertyController::class, "index"])->name("property.all");
-Route::get("/property/{property}", [PropertyController::class, "show"])->name("owner.get");
+Route::get("/property/{property}", [PropertyController::class, "show"])->name("property.get");
 
 // Rotas com middleware de autenticação -- Owner -- 
 // Adicionando "user" ao request, deve estar logado para criar uma propriedade
