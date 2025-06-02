@@ -9,6 +9,7 @@ use App\Jobs\EmailSendJob;
 use App\Models\Owner;
 use App\Repositories\Interfaces\OwnerRepositoryInterface;
 use App\Repositories\Interfaces\PropertyRepositoryInterface;
+use Carbon\Carbon;
 use stdClass;
 
 class OwnerService
@@ -58,6 +59,20 @@ class OwnerService
         }
 
         $this->ownerRepository->delete($id);
+    }
+
+    public function validateMail(string $token)
+    {
+        $owner = $this->ownerRepository->findFromToken($token);
+
+        if (!$owner) {
+            return null;
+        }
+
+        $owner->email_verified_at = Carbon::now();
+        $owner->save();
+
+        return $owner;
     }
 
     public function validate(LoginOwnerDTO $ownerData): Owner | null

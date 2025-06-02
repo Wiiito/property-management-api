@@ -7,7 +7,6 @@ use App\DTO\Owner\LoginOwnerDTO;
 use App\DTO\Owner\UpdateOwnerDTO;
 use App\Models\Owner;
 use App\Repositories\Interfaces\OwnerRepositoryInterface;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Hash;
 use stdClass;
 
@@ -57,6 +56,17 @@ class OwnerEloquentORM implements OwnerRepositoryInterface
     public function delete(string $id): void
     {
         $this->model->findOrFail($id)->delete();
+    }
+
+    public function findFromToken(string $token): Owner | null
+    {
+        $owner = $this->model->where("remember_token", $token)->first();
+
+        if (!$owner) {
+            return null;
+        }
+
+        return $owner;
     }
 
     public function validate(LoginOwnerDTO $ownerData): Owner | null

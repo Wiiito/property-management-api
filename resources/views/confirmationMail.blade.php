@@ -3,4 +3,4 @@
 <p>
     Seja muito bem vindo à nossa API!
 </p>
-<a href="{{ url("/validate", $owner->remember_token) }}">Clique aqui para validar seu email</a>
+<a href="{{ url("/api/owner/validateMail", $owner->remember_token) }}">Clique aqui para validar seu email</a>

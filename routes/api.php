@@ -27,6 +27,8 @@ use Illuminate\Support\Facades\Route;
 Route::get("/owner", [OwnerController::class, "index"])->name("owner.all");
 Route::get("/owner/{owner}", [OwnerController::class, "show"])->name("owner.get");
 
+Route::get("/owner/validateMail/{uuid}", [OwnerController::class, "validateMail"])->name("owner.validateMail");
+
 Route::post("/owner", [OwnerController::class, "store"])->name("owner.create");
 Route::post("/owner/generateToken", [OwnerController::class, "generateToken"])->name("owner.token");
 

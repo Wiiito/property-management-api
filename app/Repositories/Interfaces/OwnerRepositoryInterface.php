@@ -17,6 +17,8 @@ interface OwnerRepositoryInterface
 
     public function create(CreateOwnerDTO $ownerData): Owner;
 
+    public function findFromToken(string $token): Owner | null;
+
     public function update(UpdateOwnerDTO $ownerData): stdClass | null;
 
     public function delete(string $id): void;

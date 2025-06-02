@@ -60,6 +60,15 @@ class OwnerController extends Controller
         $this->service->delete($id);
     }
 
+    public function validateMail(string $uuid)
+    {
+        $owner = $this->service->validateMail($uuid);
+        if (!$owner) {
+            return response()->json(["errors" => ["token" => "invalid token"]], Response::HTTP_BAD_REQUEST);
+        }
+        return response()->json(["message" => "email validated succeffully"]);
+    }
+
     public function generateToken(LoginOwnerRequest $request)
     {
         $loginData = LoginOwnerDTO::fromRequest($request);
