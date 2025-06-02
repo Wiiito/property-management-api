@@ -25,12 +25,12 @@ class PropertyEloquentORM implements PropertyRepositoryInterface
 
         $filteredProperties = DB::table("properties");
 
-        $filter->city ? $filteredProperties->where("city", "like", "%" . $filter->city . "%") : "";
-        $filter->type ? $filteredProperties->where("type", $filter->type) : "";
-        $filter->minValue ? $filteredProperties->where("value", ">", $filter->minValue) : "";
-        $filter->maxValue ? $filteredProperties->where("value", "<", $filter->maxValue) : "";
-        $filter->minFloor ? $filteredProperties->where("floor", ">", $filter->minFloor) : "";
-        $filter->maxValue ? $filteredProperties->where("floor", "<", $filter->maxValue) : "";
+        !is_null($filter->city) ? $filteredProperties->where("city", "like", "%" . $filter->city . "%") : "";
+        !is_null($filter->type) ? $filteredProperties->where("type", $filter->type) : "";
+        !is_null($filter->minValue) ? $filteredProperties->where("value", ">=", $filter->minValue) : "";
+        !is_null($filter->maxValue) ? $filteredProperties->where("value", "<=", $filter->maxValue) : "";
+        !is_null($filter->minFloor) ? $filteredProperties->where("floor", ">=", $filter->minFloor) : "";
+        !is_null($filter->maxFloor) ? $filteredProperties->where("floor", "<=", $filter->maxFloor) : "";
         !is_null($filter->furnished) ? $filteredProperties->where("furnished", $filter->furnished) : "";
 
         $filteredProperties->paginate(20);

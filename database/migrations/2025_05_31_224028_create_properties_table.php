@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string("city");
             $table->enum("type", array_column(PropertyType::cases(), "value"));
             $table->boolean("furnished")->default(false);
-            $table->integer("floor")->nullable();
+            $table->integer("floor")->default(0);
             $table->foreignId("owner_id")->constrained(table: "owners", indexName: "id");
             $table->timestamps();
         });

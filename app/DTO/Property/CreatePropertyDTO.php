@@ -13,7 +13,7 @@ class CreatePropertyDTO
         public string $city,
         public PropertyType $type,
         public bool $furnished,
-        public int | null $floor,
+        public int $floor,
         public string $owner_id,
     ) {}
 
@@ -25,7 +25,7 @@ class CreatePropertyDTO
             $request->city,
             PropertyType::from($request->type),
             $request->furnished,
-            $request->floor,
+            $request->floor ?? 0,
             $request->user()->id
         );
     }
