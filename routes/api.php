@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\PropertyStatisticsController;
 use App\Http\Middleware\OwnerMiddleware;
 use App\Http\Middleware\PropertyMiddleware;
+use App\Models\PropertyStatistics;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +39,14 @@ Route::middleware(['auth:sanctum', OwnerMiddleware::class])->group(function () {
     Route::delete("/owner/{owner}", [OwnerController::class, "destroy"])->name("owner.delete");
 });
 
+// ---- Properties statistics ----
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get("/property/statistics", [PropertyStatisticsController::class, "index"])->name("property.statistics.all");
+
+    Route::get("/property/statistics/{property}", [PropertyStatisticsController::class, "show"])->name("property.statistics.get")
+        ->middleware(PropertyMiddleware::class);
+});
 
 // ---- Property ----
 

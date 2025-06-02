@@ -7,7 +7,7 @@ use App\DTO\Property\CreatePropertyDTO;
 use App\DTO\Property\FilterPropertyDTO;
 use App\DTO\Property\UpdatePropertyDTO;
 use App\Repositories\Interfaces\PropertyRepositoryInterface;
-use Illuminate\Database\Eloquent\Collection;
+use App\Repositories\Interfaces\PropertyStatisticsRepositoryInterface;
 use stdClass;
 
 class PropertyService
@@ -19,6 +19,7 @@ class PropertyService
          * Implementação pensada para manutenção
          */
         protected PropertyRepositoryInterface $repository,
+        protected PropertyStatisticsService $propertyStatisticsService
     ) {}
 
     public function all(?FilterPropertyDTO $filter = null): array
@@ -35,6 +36,9 @@ class PropertyService
     public function create(CreatePropertyDTO $propertyData): stdClass
     {
         $property = $this->repository->create($propertyData);
+
+        $this->propertyStatisticsService->new($property->id);
+
         return $property;
     }
 
@@ -46,6 +50,7 @@ class PropertyService
 
     public function delete(string $id)
     {
+        $this->propertyStatisticsService->delete($id);
         $this->repository->delete($id);
     }
 }

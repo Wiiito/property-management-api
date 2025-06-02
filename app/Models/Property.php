@@ -23,4 +23,14 @@ class Property extends Model
     protected $casts = [
         'type' => PropertyType::class,
     ];
+
+    public function statistics()
+    {
+        return $this->hasOne(PropertyStatistics::class);
+    }
+
+    public function owner()
+    {
+        return $this->belongsTo(Owner::class);
+    }
 }

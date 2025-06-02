@@ -17,7 +17,7 @@ return new class extends Migration
             $table->enum("type", array_column(PropertyType::cases(), "value"));
             $table->boolean("furnished")->default(false);
             $table->integer("floor")->default(0);
-            $table->foreignId("owner_id")->constrained(table: "owners", indexName: "id");
+            $table->foreignId("owner_id")->constrained(table: "owners");
             $table->timestamps();
         });
     }

@@ -7,10 +7,8 @@ use App\DTO\Owner\LoginOwnerDTO;
 use App\DTO\Owner\UpdateOwnerDTO;
 use App\Jobs\EmailSendJob;
 use App\Models\Owner;
-use App\Models\Property;
 use App\Repositories\Interfaces\OwnerRepositoryInterface;
 use App\Repositories\Interfaces\PropertyRepositoryInterface;
-use Illuminate\Database\Eloquent\Collection;
 use stdClass;
 
 class OwnerService

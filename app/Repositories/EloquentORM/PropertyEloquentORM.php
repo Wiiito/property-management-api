@@ -7,6 +7,8 @@ use App\DTO\Property\FilterPropertyDTO;
 use App\DTO\Property\UpdatePropertyDTO;
 use App\Models\Property;
 use App\Repositories\Interfaces\PropertyRepositoryInterface;
+use App\Services\PropertyStatisticsService;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 use stdClass;
@@ -15,6 +17,7 @@ class PropertyEloquentORM implements PropertyRepositoryInterface
 {
     public function __construct(
         protected Property $model,
+        protected PropertyStatisticsService $statistics,
     ) {}
 
     public function all(?FilterPropertyDTO $filter = null): array
@@ -35,7 +38,19 @@ class PropertyEloquentORM implements PropertyRepositoryInterface
 
         $filteredProperties->paginate(20);
 
-        return $filteredProperties->get()->all();
+        $allFilteredProperties = $filteredProperties->get()->all();
+
+        $this->incrementPropertiesView($allFilteredProperties);
+
+        return $allFilteredProperties;
+    }
+
+    private function incrementPropertiesView(array $properties)
+    {
+        // Adiciona uma visualização em cada propriedade passada
+        foreach ($properties as $property) {
+            $this->statistics->incrementImpressions($property->id);
+        }
     }
 
     public function findOne(string $id): stdClass | null
@@ -45,6 +60,8 @@ class PropertyEloquentORM implements PropertyRepositoryInterface
         if (!$property) {
             return null;
         }
+
+        $this->statistics->incrementClick($property->id);
 
         return (object) $property->first()->toArray();
     }
