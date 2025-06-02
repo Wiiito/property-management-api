@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
+use Ramsey\Uuid\Uuid;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Owner>
@@ -17,6 +18,7 @@ class OwnerFactory extends Factory
             'name' => $this->faker->name,
             'email' => $this->faker->safeEmail,
             'password' => Hash::make($this->faker->password),
+            'remember_token' => Uuid::uuid4()->toString(),
             'created_at' => now(),
             'updated_at' => now(),
         ];
