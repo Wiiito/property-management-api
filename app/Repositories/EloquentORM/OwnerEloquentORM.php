@@ -33,10 +33,10 @@ class OwnerEloquentORM implements OwnerRepositoryInterface
         return (object) $owner->toArray();
     }
 
-    public function create(CreateOwnerDTO $ownerData): stdClass
+    public function create(CreateOwnerDTO $ownerData): Owner
     {
         $owner = $this->model->create((array) $ownerData);
-        return (object) $owner->toArray();
+        return $owner;
     }
 
     public function update(UpdateOwnerDTO $ownerData): stdClass | null

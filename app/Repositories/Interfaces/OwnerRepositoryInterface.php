@@ -15,7 +15,7 @@ interface OwnerRepositoryInterface
 
     public function findOne(string $id): stdClass | null;
 
-    public function create(CreateOwnerDTO $ownerData): stdClass;
+    public function create(CreateOwnerDTO $ownerData): Owner;
 
     public function update(UpdateOwnerDTO $ownerData): stdClass | null;
 

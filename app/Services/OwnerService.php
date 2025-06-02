@@ -5,6 +5,7 @@ namespace App\Services;
 use App\DTO\Owner\CreateOwnerDTO;
 use App\DTO\Owner\LoginOwnerDTO;
 use App\DTO\Owner\UpdateOwnerDTO;
+use App\Jobs\EmailSendJob;
 use App\Models\Owner;
 use App\Models\Property;
 use App\Repositories\Interfaces\OwnerRepositoryInterface;
@@ -38,7 +39,10 @@ class OwnerService
     public function create(CreateOwnerDTO $ownerData): stdClass | null
     {
         $owner = $this->ownerRepository->create($ownerData);
-        return $owner;
+
+        EmailSendJob::dispatch($owner);
+
+        return (object) $owner->toArray();
     }
 
     public function update(UpdateOwnerDTO $ownerData)
