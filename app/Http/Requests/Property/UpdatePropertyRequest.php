@@ -12,6 +12,7 @@ class UpdatePropertyRequest extends FormRequest
     {
         return [
             'title' => ['nullable', 'string', 'max:255'],
+            'city' => ['nullable', 'string', 'max:255'],
             'value' => ['nullable', 'integer'],
             'type' => ['nullable', Rule::in(PropertyType::cases())],
             'furnished' => ['nullable', 'boolean'],

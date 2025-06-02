@@ -10,6 +10,7 @@ class CreatePropertyDTO
     public function __construct(
         public string $title,
         public int $value,
+        public string $city,
         public PropertyType $type,
         public bool $furnished,
         public int | null $floor,
@@ -21,6 +22,7 @@ class CreatePropertyDTO
         return new self(
             $request->title,
             $request->value,
+            $request->city,
             PropertyType::from($request->type),
             $request->furnished,
             $request->floor,

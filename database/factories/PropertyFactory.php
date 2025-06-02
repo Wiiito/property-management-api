@@ -22,6 +22,7 @@ class PropertyFactory extends Factory
         return [
             "title" => $this->faker->sentence,
             "value" => $this->faker->numberBetween(100000, 10000000),
+            "city" => $this->faker->city,
             "type" => $this->faker->randomElement(PropertyType::cases())->value,
             "furnished" => $this->faker->boolean,
             "floor" => $this->faker->numberBetween(0, 10),

@@ -25,6 +25,7 @@ class PropertyEloquentORM implements PropertyRepositoryInterface
 
         $filteredProperties = DB::table("properties");
 
+        $filter->city ? $filteredProperties->where("city", "like", "%" . $filter->city . "%") : "";
         $filter->type ? $filteredProperties->where("type", $filter->type) : "";
         $filter->minValue ? $filteredProperties->where("value", ">", $filter->minValue) : "";
         $filter->maxValue ? $filteredProperties->where("value", "<", $filter->maxValue) : "";

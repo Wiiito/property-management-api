@@ -12,6 +12,7 @@ class CreatePropertyRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string', 'max:255'],
+            'city' => ['required', 'string', 'max:255'],
             'value' => ['required', 'integer'],
             'type' => ['required', Rule::in(PropertyType::cases())],
             'furnished' => ['required', 'boolean'],
