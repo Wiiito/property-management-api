@@ -92,5 +92,11 @@ Para testar, rode:
 php artisan test
 ```
 
+Para executar os jobs, execute:
+
+```sh
+php artisan queue:work
+```
+
 Acesse o projeto
 [http://localhost:8989](http://localhost:8989)
